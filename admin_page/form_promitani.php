@@ -29,31 +29,26 @@ $query2 = "SELECT *
 FROM `typy_promitani`";
 $result2 = MySqlDb::queryString($query2);
 //$row2 = mysqli_fetch_assoc($result2);
+//var_dump($query2);
+//echo "<br />";
 
 $query3 = "SELECT *
 FROM `filmy`";
 $result3 = MySqlDb::queryString($query3);
+//$row3 = mysqli_fetch_assoc($result3);
+
+//var_dump($query3);
+//echo "<br />";
 
 $query4 = "SELECT *
 FROM `saly`";
 $result4 = MySqlDb::queryString($query4);
+//$row4 = mysqli_fetch_assoc($result4);
+//var_dump($query4);
 
 
 
 
- if (isset($submit)) {
-$query5 = "UPDATE `promitani` SET
-                               `id_filmu` = '$id_filmu',
-                               `id_salu` = '$id_salu',
-                               `id_typ_promitani` = '$typ_promitani',
-                               `cena` = '$cena',
-                               `cas_promitani` = '$cas',
-                               `konec_predprodeje` = '$konec_predprodeje'
-                               WHERE `id_promitani` = '$id_promitani';";
-
-    $resultUpdate = MySqlDb::queryString($query2);
-//var_dump($query2);
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,10 +64,13 @@ $query5 = "UPDATE `promitani` SET
             Film: <select name="id_filmu">
 <br /><?php
 while ($row3 = mysqli_fetch_assoc($result3)) {
+
 ?>
+
 <option <?php
-if ($row3['id_filmu'] == $row['id_filmu']) { echo "selected ";} ?>value="<?php echo $row3['id_filmu'] ?>"><?php echo $row3['nazev']; ?></option><?php } ?>
-</select><br />
+if ($row3['id_filmu'] == $row['id_filmu']) { echo "selected ";} ?> type="text" name="id_filmu" value="<?php echo $row3['id_filmu'] ?>"><?php echo $row3['nazev']; ?></option><?php } ?>
+</select><br /><?php   echo $row3["id_filmu"]; ?>
+
 
             cena: <input type="text" name="cena" value="<?php echo $row['cena']; ?> "><br />
             Začátek filmu: <input type="datetime" name="cas_promitani" value="<?php echo $row['cas_promitani']; ?> "><br />
@@ -81,7 +79,7 @@ if ($row3['id_filmu'] == $row['id_filmu']) { echo "selected ";} ?>value="<?php e
 while ($row4 = mysqli_fetch_assoc($result4)) {
 ?>
 <option <?php
-if ($row4['id_salu'] == $row['id_salu']) { echo "selected ";} ?>value="<?php echo $row4['id_salu'] ?>"><?php echo $row4['nazev']; ?></option><?php } ?>
+if ($row4['id_salu'] == $row['id_salu']) { echo "selected ";} ?> type="text" name="id_salu" value="<?php echo $row4['id_salu'] ?>"><?php echo $row4['nazev']; ?></option><?php } ?>
 </select><br />
             Počet míst: <input type="text" name="pocet_mist" value="<?php echo $row['pocet_mist']; ?> "><br />
             Druh promítaní: <select name="druh_promitani">
@@ -89,7 +87,7 @@ if ($row4['id_salu'] == $row['id_salu']) { echo "selected ";} ?>value="<?php ech
 while ($row2 = mysqli_fetch_assoc($result2)) {
 ?>
 <option <?php
-if ($row2['id_typ_promitani'] == $row['id_typu_promitani']) { echo "selected ";} ?>value="<?php echo $row2['id_typ_promitani'] ?>"><?php echo $row2['nazev']; ?></option><?php } ?>
+if ($row2['id_typ_promitani'] == $row['id_typu_promitani']) { echo "selected ";} ?> type="text" name="id_typ_promitani" value="<?php echo $row2['id_typ_promitani'] ?>"><?php echo $row2['nazev']; ?></option><?php } ?>
 </select><br />
             Konec předprodeje: <input type="datetime" name="konec_predprodeje" value="<?php echo $row['konec_predprodeje']; ?> "><br />
             <input type="submit" name="submit">
@@ -97,6 +95,19 @@ if ($row2['id_typ_promitani'] == $row['id_typu_promitani']) { echo "selected ";}
           /*  if ($submit !== NULL) {
                header("location:http://localhost/oop_db/admin_page/list_movie.php");
             }*/
+            if (isset($submit)) {
+           $query5 = "UPDATE `promitani` SET
+                                          `id_filmu` = '$id_filmu',
+                                          `id_salu` = '$id_salu',
+                                          `id_typ_promitani` = '$typ_promitani',
+                                          `cena` = '$cena',
+                                          `cas_promitani` = '$cas',
+                                          `konec_predprodeje` = '$konec_predprodeje'
+                                          WHERE `id_programu` = '$id_programu';";
+
+               $resultUpdate = MySqlDb::queryString($query5);
+           var_dump($query5);
+           }
             ?>
         </p>
 
