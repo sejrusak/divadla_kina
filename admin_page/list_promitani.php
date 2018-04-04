@@ -22,3 +22,6 @@ foreach ($promitani as $row1) {
     echo "</tr>";
 }
 echo "</table>";
+
+?>
+<a href="new_promitani.php">Vytvořit promítání</a>

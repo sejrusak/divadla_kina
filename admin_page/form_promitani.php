@@ -1,7 +1,7 @@
 <?php
 include 'header.php';
 $id_programu = filter_input(INPUT_GET, "id_promitani");
-$nazev = filter_input(INPUT_GET, "nazev");
+$id_filmu = filter_input(INPUT_GET, "id_filmu");
 $cena = filter_input(INPUT_POST, "cena");
 $cas = filter_input(INPUT_POST, "cas_promitani");
 $id_salu = filter_input(INPUT_GET, "id_salu");
@@ -10,26 +10,51 @@ $konec_predprodeje = filter_input(INPUT_POST, "konec_predprodeje");
 $submit = filter_input(INPUT_POST, "submit");
 
 
-$query3 = "SELECT p.id_programu, f.nazev AS 'nazev', p. cena, p.cas_promitani AS 'cas_promitani', sa.nazev AS 'sal', tp.nazev AS 'druh_promitani', sa.pocet_mist AS 'pocet_mist', p.konec_predprodeje AS 'konec_predprodeje'
+
+$query1 = "SELECT p.id_programu, f.nazev AS 'nazev',f.id_filmu AS id_filmu , p.cena,
+          p.cas_promitani AS 'cas_promitani', sa.nazev AS 'sal',
+          tp.id_typ_promitani AS 'id_typu_promitani' ,tp.nazev AS 'druh_promitani',
+          sa.pocet_mist AS 'pocet_mist', p.konec_predprodeje AS 'konec_predprodeje',
+          sa.id_salu AS 'id_salu'
           FROM promitani p
           JOIN filmy f ON p.id_filmu = f.id_filmu
           JOIN typy_promitani tp ON p.id_typ_promitani = tp.id_typ_promitani
           JOIN saly sa ON p.id_salu = sa.id_salu
           WHERE id_programu = $id_programu";
-$result3 = MySqlDb::queryString($query3);
-$row = mysqli_fetch_assoc($result3);
 
-/*if (isset($submit)) {
-$query2 = "UPDATE `promitani` SET
-                               `nazev` = '$nazev',
-                               `vek_limit` = '$vek_limit'
+$result1 = MySqlDb::queryString($query1);
+$row = mysqli_fetch_assoc($result1);
+
+$query2 = "SELECT *
+FROM `typy_promitani`";
+$result2 = MySqlDb::queryString($query2);
+//$row2 = mysqli_fetch_assoc($result2);
+
+$query3 = "SELECT *
+FROM `filmy`";
+$result3 = MySqlDb::queryString($query3);
+
+$query4 = "SELECT *
+FROM `saly`";
+$result4 = MySqlDb::queryString($query4);
+
+
+
+
+ if (isset($submit)) {
+$query5 = "UPDATE `promitani` SET
+                               `id_filmu` = '$id_filmu',
+                               `id_salu` = '$id_salu',
+                               `id_typ_promitani` = '$typ_promitani',
+                               `cena` = '$cena',
+                               `cas_promitani` = '$cas',
+                               `konec_predprodeje` = '$konec_predprodeje'
                                WHERE `id_promitani` = '$id_promitani';";
+
     $resultUpdate = MySqlDb::queryString($query2);
 //var_dump($query2);
-}*/
-
+}
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,12 +66,31 @@ $query2 = "UPDATE `promitani` SET
     <form method="post">
 
         <p>
-            nazev: <input type="text" name="nazev" value="<?php echo $row['nazev']; ?> "><br />
+            Film: <select name="id_filmu">
+<br /><?php
+while ($row3 = mysqli_fetch_assoc($result3)) {
+?>
+<option <?php
+if ($row3['id_filmu'] == $row['id_filmu']) { echo "selected ";} ?>value="<?php echo $row3['id_filmu'] ?>"><?php echo $row3['nazev']; ?></option><?php } ?>
+</select><br />
+
             cena: <input type="text" name="cena" value="<?php echo $row['cena']; ?> "><br />
             Začátek filmu: <input type="datetime" name="cas_promitani" value="<?php echo $row['cas_promitani']; ?> "><br />
-            Sál: <input type="text" name="id_salu" value="<?php echo $row['sal']; ?> "><br />
-            Počet míst: <input type="text" name="vek_limit" value="<?php echo $row['pocet_mist']; ?> "><br />
-            Druh promítání: <input type="text" name="druh_promitani" value="<?php echo $row['druh_promitani']; ?> "><br />
+            Sál: <select name="id_salu">
+<?php
+while ($row4 = mysqli_fetch_assoc($result4)) {
+?>
+<option <?php
+if ($row4['id_salu'] == $row['id_salu']) { echo "selected ";} ?>value="<?php echo $row4['id_salu'] ?>"><?php echo $row4['nazev']; ?></option><?php } ?>
+</select><br />
+            Počet míst: <input type="text" name="pocet_mist" value="<?php echo $row['pocet_mist']; ?> "><br />
+            Druh promítaní: <select name="druh_promitani">
+              <?php
+while ($row2 = mysqli_fetch_assoc($result2)) {
+?>
+<option <?php
+if ($row2['id_typ_promitani'] == $row['id_typu_promitani']) { echo "selected ";} ?>value="<?php echo $row2['id_typ_promitani'] ?>"><?php echo $row2['nazev']; ?></option><?php } ?>
+</select><br />
             Konec předprodeje: <input type="datetime" name="konec_predprodeje" value="<?php echo $row['konec_predprodeje']; ?> "><br />
             <input type="submit" name="submit">
             <?php

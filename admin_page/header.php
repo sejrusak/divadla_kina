@@ -32,16 +32,16 @@ model::login($email,$password);
 
 if (isset($_SESSION['email'])) {
     echo "Jste přihlášený jako " . $_SESSION['email'];
-    ?> <a href="http://localhost/oop_db/logOut.php" > <?php echo "Odhlásit"; ?></a><?php
+    ?> <a href="http://localhost/divadla_kina/logOut.php" > <?php echo "Odhlásit"; ?></a><?php
     echo "<br>" . "<br />";
 } else {
     echo "Nejste přihlášený >" . "<a href='login.php'> Přihlásit </a> nebo " . "<a href='registration.php'> Registrovat uživatele</a>";
 }
 ?></div>
-<ul><?php echo "<li><a href='http://localhost/oop_db/Index.php'>Home</a></li>";
-          echo "<li><a href='http://localhost/oop_db/admin_page/list_users.php'> Seznam Uživatelů </a></li> ";
-          echo "<li><a href='http://localhost/oop_db/admin_page/list_movie.php'> Seznam filmů </a></li>";
-          echo "<li><a href='http://localhost/oop_db/admin_page/list_promitani.php'> Seznam Promítání </a></li>";
+<ul><?php echo "<li><a href='http://localhost/divadla_kina/Index.php'>Home</a></li>";
+          echo "<li><a href='http://localhost/divadla_kina/admin_page/list_users.php'> Seznam Uživatelů </a></li> ";
+          echo "<li><a href='http://localhost/divadla_kina/admin_page/list_movie.php'> Seznam filmů </a></li>";
+          echo "<li><a href='http://localhost/divadla_kina/admin_page/list_promitani.php'> Seznam Promítání </a></li>";
 
 echo "</ul>";
 /*?>
