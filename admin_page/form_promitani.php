@@ -69,7 +69,7 @@ while ($row3 = mysqli_fetch_assoc($result3)) {
 
 <option <?php
 if ($row3['id_filmu'] == $row['id_filmu']) { echo "selected ";} ?> type="text" name="id_filmu" value="<?php echo $row3['id_filmu'] ?>"><?php echo $row3['nazev']; ?></option><?php } ?>
-</select><br /><?php   echo $row3["id_filmu"]; ?>
+</select><br />
 
 
             cena: <input type="text" name="cena" value="<?php echo $row['cena']; ?> "><br />
