@@ -1,5 +1,6 @@
 <?php
 include 'header.php';
+if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
 $id_programu = filter_input(INPUT_GET, "id_promitani");
 $id_filmu = filter_input(INPUT_POST, "id_filmu");
 $jazyk = filter_input(INPUT_POST, "jazyk");
@@ -113,3 +114,6 @@ while ($row2 = mysqli_fetch_assoc($result2)) {
 
     </form>
 </html>
+<?php
+} else {echo "nejste přihlášení jako admin";};
+ include "footer.php";

@@ -1,5 +1,6 @@
 <?php
 include 'header.php';
+if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
 $nazev = filter_input(INPUT_POST, "nazev");
 $vek_limit = filter_input(INPUT_POST, "vek_limit");
 $submit = filter_input(INPUT_POST, "submit");
@@ -18,3 +19,6 @@ if ($submit !== NULL) {
         Vek Limit: <input name="vek_limit" type="number" > <br />
         <input type="submit" name="submit">
     </p>
+<?php
+} else {echo "nejste přihlášení jako admin";};
+ include "footer.php";

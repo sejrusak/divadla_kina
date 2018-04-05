@@ -1,5 +1,6 @@
 <?php
 include 'header.php';
+if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
 $id = filter_input(INPUT_GET, "id_user");
 $email = filter_input(INPUT_POST, "email");
 $jmeno = filter_input(INPUT_POST, "jmeno");
@@ -73,3 +74,6 @@ Model::editUser($id, $email, $jmeno, $prijmeni, $heslo, $id_role, $banned, $subm
 
     </form>
 </html>
+<?php
+} else {echo "nejste přihlášení jako admin";};
+ include "footer.php";

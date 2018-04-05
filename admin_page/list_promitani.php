@@ -1,5 +1,6 @@
 <?php
 include 'header.php';
+if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
 //$myConnection = new MySQLDb();
 //var_dump($myConnection);
 //var_dump($result);
@@ -26,3 +27,6 @@ echo "</table>";
 
 ?>
 <a href="new_promitani.php">Vytvořit promítání</a>
+<?php
+} else {echo "nejste přihlášení jako admin";};
+ include "footer.php";

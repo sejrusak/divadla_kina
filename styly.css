@@ -1,0 +1,14 @@
+body {
+margin: 0 auto;
+width: 1129px;
+
+}
+
+#menu a {
+color: red;
+}
+
+#menu a:hover{
+text-decoration: none;
+text-shadow: 0.5px 0.5px grey;
+}

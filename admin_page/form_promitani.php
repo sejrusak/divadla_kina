@@ -1,5 +1,6 @@
 <?php
 include 'header.php';
+if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
 $id_programu = filter_input(INPUT_GET, "id_promitani");
 $id_filmu = filter_input(INPUT_POST, "id_filmu");
 $cena = filter_input(INPUT_POST, "cena");
@@ -118,3 +119,6 @@ if ($row2['id_typ_promitani'] == $row['id_typ_promitani']) { echo "selected ";} 
 
     </form>
 </html>
+<?php
+} else {echo "nejste přihlášení jako admin";};
+ include "footer.php";

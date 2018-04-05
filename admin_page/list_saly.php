@@ -1,4 +1,5 @@
 <?php require_once "header.php";
+if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
 
 //$myConnection = new MySQLDb();
 //var_dump($myConnection);
@@ -17,4 +18,6 @@ if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
     }
 }
 ?>
-<a href="new_sal.php">Nový Sál</a>
+<a href="new_sal.php">Nový Sál</a><?php
+} else {echo "nejste přihlášení jako admin";};
+ include "footer.php";

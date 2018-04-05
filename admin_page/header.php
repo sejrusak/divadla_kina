@@ -8,12 +8,14 @@
             a {text-decoration: none;} ul {list-style-type: none;}
         </style>
         <meta charset="utf-8">
-        <title></title>
+        <title>Divadla/Kina</title>
+        <link rel="stylesheet" type="text/css" href="../styly.css">
     </head>
     <body>
 <?php
 session_start();
-
+?><div id="obalovak"><?php
+if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
 require_once '../autoloader.php';
 $submit = filter_input(INPUT_POST, "submit");
 //var_dump($submit);
@@ -44,4 +46,5 @@ if (isset($_SESSION['email'])) {
           echo "<li><a href='http://localhost/divadla_kina/admin_page/list_promitani.php'> Seznam Promítání </a></li>";
           echo "<li><a href='http://localhost/divadla_kina/admin_page/list_saly.php'> Seznam Sálů </a></li>";
 
-echo "</ul>";
+?></ul><?php
+} else {echo "Prosím přihlašte se, ";};

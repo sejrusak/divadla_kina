@@ -1,4 +1,5 @@
 <?php require_once "header.php";
+if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
 
 
 //$myConnection = new MySQLDb();
@@ -19,5 +20,5 @@ if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
     }
 }
   ?><a href="new_movie.php">Nový film</a><?php
-require_once "../footer.php";
-?>
+} else {echo "nejste přihlášení jako admin";};
+include "footer.php";

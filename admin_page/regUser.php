@@ -1,5 +1,6 @@
 <?php
 include 'header.php';
+if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
 $heslo = filter_input(INPUT_POST, "password");
 $heslo2 = filter_input(INPUT_POST, "password2");
 $email = filter_input(INPUT_POST, "email");
@@ -37,3 +38,6 @@ if (Model::isRegistered($email) == FALSE) {
         Heslo znovu: <input type="password" name="password2"> <br />
         <input type="submit" name="submit">
     </p>
+<?php
+} else {echo "nejste přihlášení jako admin";};
+ include "footer.php";

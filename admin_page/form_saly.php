@@ -1,5 +1,6 @@
 <?php
 include 'header.php';
+if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
 $id_salu = filter_input(INPUT_GET, "id_salu");
 $nazev = filter_input(INPUT_POST, "nazev");
 $pocet_mist = filter_input(INPUT_POST, "pocet_mist");
@@ -43,3 +44,6 @@ if (isset($submit) && isset($id_salu)) {
 
     </form>
 </html>
+<?php
+} else {echo "nejste přihlášení jako admin";};
+ include "footer.php";

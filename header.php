@@ -8,12 +8,13 @@
             a {text-decoration: none;} ul {list-style-type: none;}
         </style>
         <meta charset="utf-8">
-        <title></title>
+        <title>Divadla/Kina</title>
+        <link rel="stylesheet" type="text/css" href="styly.css">
     </head>
     <body>
 <?php
 session_start();
-
+?><img src="grafika/image.jpg" alt="head_Image" /><?php
 require_once 'autoloader.php';
 $submit = filter_input(INPUT_POST, "submit");
 //var_dump($submit);
@@ -37,25 +38,25 @@ if (isset($_SESSION['email'])) {
 } else {
     echo "Nejste přihlášený >" . "<a href='login.php'> Přihlásit </a> nebo " . "<a href='registration.php'> Registrovat uživatele</a>";
 }
-?></div><?php
+?></div>
+<div id="menu">
+<a href='Index.php'>Home</a></li>
+<a href='vypis_promitani.php'>Promítané filmy</a>
+<a href='kontakty.php'>Kontakt</a>
+<?php
+if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
+    echo "<a href='admin_page/index.php'>Admin Page</a>";
+}?></div><?php
 
-?>
+/*?>
 <ul><?php echo "<li><a href='Index.php'>Home</a></li>";
           echo "<li><a href='vypis_promitani.php'>Promítané filmy</a></li>";
 
     if (isset($_SESSION['email'])) {
-      
 
 
-         /**if (($_SESSION['id_role'] == 2) || ($_SESSION['id_role'] == 1)) {
-            echo "<li><a href='sal1.php'>SÁL1</a></li>";
-        }
-        if (($_SESSION['id_role'] == 2) || ($_SESSION['id_role'] == 1)) {
-            echo "<li><a href='sal2.php'>SÁL2</a></li>";
-        }
-        if (($_SESSION['id_role'] == 1)) {
-        echo "<li><a href='balkonky.php'>Královské balkónky</a></li>";
-    }*/
+
+
     if (($_SESSION['id_role'] == 2) || ($_SESSION['id_role']) == 1) {
         echo "<li><a href='kontakty.php'>Kontakt</a></li>";
     }
@@ -64,7 +65,7 @@ if (isset($_SESSION['email'])) {
     }
 } ?>
 </ul>
-
+<?php */ ?>
 
 
 <?php
