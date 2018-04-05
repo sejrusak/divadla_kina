@@ -7,6 +7,7 @@ $cas = filter_input(INPUT_POST, "cas_promitani");
 $id_salu = filter_input(INPUT_POST, "id_salu");
 $typ_promitani = filter_input(INPUT_POST, "id_typ_promitani");
 $konec_predprodeje = filter_input(INPUT_POST, "konec_predprodeje");
+$hidden = filter_input(INPUT_POST, "hidden");
 $submit = filter_input(INPUT_POST, "submit");
 
 if (isset($submit)) {
@@ -16,7 +17,8 @@ $query5 = "UPDATE `promitani` SET
                               `id_typ_promitani` = '$typ_promitani',
                               `cena` = '$cena',
                               `cas_promitani` = '$cas',
-                              `konec_predprodeje` = '$konec_predprodeje'
+                              `konec_predprodeje` = '$konec_predprodeje',
+                              `hidden` = '$hidden'
                               WHERE `id_programu` = '$id_programu';";
 
    $resultUpdate = MySqlDb::queryString($query5);
@@ -101,6 +103,10 @@ while ($row2 = mysqli_fetch_assoc($result2)) {
 if ($row2['id_typ_promitani'] == $row['id_typ_promitani']) { echo "selected ";} ?>value="<?php echo $row2['id_typ_promitani'] ?>"><?php echo $row2['nazev']; ?></option><?php } ?>
 </select><br />
             Konec předprodeje: <input type="datetime" name="konec_predprodeje" value="<?php echo $row['konec_predprodeje']; ?> "><br />
+            Ban: <select name="hidden">
+            <option value="0">Viditelný</option>
+            <option value="1">Neviditelný</option>
+            </select><br />
             <input type="submit" name="submit">
             <?php
           /*  if ($submit !== NULL) {

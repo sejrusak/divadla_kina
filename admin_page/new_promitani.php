@@ -10,31 +10,36 @@ $typ_promitani = filter_input(INPUT_POST, "id_typ_promitani");
 $konec_predprodeje = filter_input(INPUT_POST, "konec_predprodeje");
 $submit = filter_input(INPUT_POST, "submit");
 
+
 if (isset($submit)) {
   $queryInsert = "INSERT INTO `promitani` (`id_filmu`, `id_salu`, `id_typ_promitani`, `jazyk`, `cena`, `cas_promitani`, `konec_predprodeje`)
   VALUES ('$id_filmu', '$id_salu', '$typ_promitani', '$jazyk', '$cena', '$cas', '$konec_predprodeje');";
   $resultInsert = MySqlDb::queryString($queryInsert);
-  var_dump($queryInsert);
+  //var_dump($queryInsert);
   //$rowInsert = mysqli_fetch_assoc($resultInsert);
 
-  $query69 = "SELECT *
-  FROM `promitani`";
+  $query69 = "SELECT * FROM `promitani`";
   $result69 = MySqlDb::queryString($query69);
-while ($row69 = mysqli_fetch_assoc($result69)) {
+  while ($row69 = mysqli_fetch_assoc($result69)) {
   $id_promitani = $row69['id_programu'];
-  //echo $id_promitani;
+
   }
+//echo "id je" . $id_promitani;
 
+$query10 = "SELECT * FROM `saly` WHERE `id_salu` = '$id_salu'";
+$result10 = MySqlDb::queryString($query10);
+$row10 = mysqli_fetch_assoc($result10);
 
-  for ($seat = 1; $seat <= 200; $seat++) {
-   $sql2 = "INSERT INTO `sedacky_promitani` (`id_sedacky`, `id_promitani`, `id_status`)
+  for ($seat = 1; $seat <= $row10['pocet_mist']; $seat++) {
+   $query129 = "INSERT INTO `sedacky_promitani` (`id_sedacky`, `id_promitani`, `id_status`)
    VALUES ('$seat', '$id_promitani', '1');";
-   echo "<br />" . $sql2;
+   $result129 = MySqlDb::queryString($query129);
+   //echo "<br />" . $query129;
    }
-   $querySedacky = $sql12;
-   //$resultSedacky = MySqlDb::queryString($querySedacky);
-   var_dump($query_sedacky);
+
 }
+
+
 
 
 $query2 = "SELECT *
@@ -95,8 +100,8 @@ while ($row2 = mysqli_fetch_assoc($result2)) {
 ?>
 <option value="<?php echo $row2['id_typ_promitani'] ?>"><?php echo $row2['nazev']; ?></option><?php } ?>
 </select><br />
-            Začátek filmu: <input type="datetime" name="cas_promitani"><br />
-            Konec předprodeje: <input type="datetime" name="konec_predprodeje"><br />
+            Začátek filmu: <input type="datetime" name="cas_promitani" placeholder="YYYY-MM-DD HH:MM:SS" ><br />
+            Konec předprodeje: <input type="datetime" name="konec_predprodeje" placeholder="YYYY-MM-DD HH:MM:SS" ><br />
             <input type="submit" name="submit">
             <?php
           /*  if ($submit !== NULL) {

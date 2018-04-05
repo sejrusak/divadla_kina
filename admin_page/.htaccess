@@ -3,6 +3,7 @@ RewriteRule ^user/new ./form_user.php [L,QSA]
 RewriteRule ^user/(.*) ./form_user.php?id_user=$1 [L,QSA]
 RewriteRule ^movie/(.*) ./form_movie.php?id_movie=$1 [L,QSA]
 RewriteRule ^promitani/(.*) ./form_promitani.php?id_promitani=$1 [L,QSA]
+RewriteRule ^saly/(.*) ./form_saly.php?id_salu=$1 [L,QSA]
 
 # localhost/maturitni-prace/admin/autor/XXX
 # localhost/maturitni-prace/admin/formAuthor.php?id_autor=$1

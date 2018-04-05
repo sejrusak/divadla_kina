@@ -6,6 +6,7 @@ $jmeno = filter_input(INPUT_POST, "jmeno");
 $prijmeni = filter_input(INPUT_POST, "prijmeni");
 $heslo = filter_input(INPUT_POST, "heslo");
 $id_role = filter_input(INPUT_POST, "id_role");
+$banned = filter_input(INPUT_POST, "banned");
 $submit = filter_input(INPUT_POST, "submit");
 $query3 = "SELECT * FROM `users` WHERE `id_user` = '$id'";
 $result3 = MySqlDb::queryString($query3);
@@ -13,7 +14,7 @@ $user = mysqli_fetch_assoc($result3);
 //echo $email;
 
 if ((isset($submit)) && isset($id)) {
-Model::editUser($id, $email, $jmeno, $prijmeni, $heslo, $id_role, $submit);
+Model::editUser($id, $email, $jmeno, $prijmeni, $heslo, $id_role, $banned, $submit);
 } elseif (isset($submit)) {
 
   if (Model::isRegistered($email) == FALSE) {
@@ -55,7 +56,11 @@ Model::editUser($id, $email, $jmeno, $prijmeni, $heslo, $id_role, $submit);
                 */
                 ?>
 
-            </select>
+            </select> <br />
+              Ban: <select name="banned">
+              <option value="0">Volný</option>
+              <option value="1">Zabanovaný</option>
+              </select>
             <br />
             <input type="submit" name="submit">
             <?php

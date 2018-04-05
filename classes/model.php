@@ -8,15 +8,16 @@ class Model {
 
         $where = "";
         if (isset($id_programu)) {
-            $where = "WHERE id_programu = $id_programu";
+            $where = " AND WHERE id_programu = $id_programu";
         }
 
 
-        $query = "SELECT p.id_programu, f.nazev AS 'Nazev filmu', p. cena, p.cas_promitani AS 'Čas promítání', sa.nazev AS 'Sál', tp.nazev AS 'Druh promítání', sa.pocet_mist AS 'Počet míst', p.konec_predprodeje AS 'Konec předprodeje'
+        $query = "SELECT p.id_programu, f.nazev AS 'Nazev filmu', p. cena, p.cas_promitani AS 'Čas promítání', sa.nazev AS 'Sál', tp.nazev AS 'Druh promítání', sa.pocet_mist AS 'Počet míst', p.konec_predprodeje AS 'Konec předprodeje', p.hidden AS hidden
                   FROM promitani p
                   JOIN filmy f ON p.id_filmu = f.id_filmu
                   JOIN typy_promitani tp ON p.id_typ_promitani = tp.id_typ_promitani
                   JOIN saly sa ON p.id_salu = sa.id_salu
+                  WHERE hidden = '0'
                   $where";
 
 
@@ -69,7 +70,7 @@ class Model {
 
     public static function login($email, $heslo) {
     $salted = md5($heslo . self::SALT . $email);
-    $query = "SELECT * FROM `users` WHERE `email` = '$email' AND `password` = '$salted' LIMIT 1;";
+    $query = "SELECT * FROM `users` WHERE `email` = '$email' AND `password` = '$salted' AND `banned` = '0' LIMIT 1;";
     $result = MYSqlDb::queryString($query);
     $row = mysqli_fetch_assoc($result);
 
@@ -89,13 +90,14 @@ class Model {
     VALUES ('$nazev', '$vek_limit');"
     $result = MySqlDb::queryString($queryMovie);
     }*/
-    public static function editUser($id, $email, $jmeno, $prijmeni, $heslo, $id_role, $submit) {
+    public static function editUser($id, $email, $jmeno, $prijmeni, $heslo, $id_role, $banned, $submit) {
 
       $query2 = "UPDATE `users` SET
                                  `email` = '$email',
                                  `jmeno` = '$jmeno',
                                  `prijmeni` = '$prijmeni',
-                                 `id_role` = '$id_role'
+                                 `id_role` = '$id_role',
+                                 `banned` = '$banned'
                                  WHERE `id_user` = '$id';";
       $resultUpdate = MySqlDb::queryString($query2);
       echo $query2;

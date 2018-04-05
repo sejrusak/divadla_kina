@@ -3,8 +3,6 @@ include 'header.php';
 //$myConnection = new MySQLDb();
 //var_dump($myConnection);
 //var_dump($result); 
-echo "Jste přihlášený jako " . $_SESSION['email'] . "<br/>";
-?> <a href="logOut.php" > <?php echo "Odhlásit uživatele " . $_SESSION['email']; ?></a><?php
 echo "<br>" . "<br />" . "<table border='1px' cellpadding='7' ><tr><th>Nazev Filmu</th><th>Cena</th><th>Konec předobjednávek</th><th>Konec promítání</th><th>Sál</th><th>Druh Promítání</th><th>Počet míst</th><th>Objednat</th>";
 $promitani = Model::getPromitani();
 foreach ($promitani as $row1) {

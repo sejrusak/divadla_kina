@@ -42,36 +42,6 @@ if (isset($_SESSION['email'])) {
           echo "<li><a href='http://localhost/divadla_kina/admin_page/list_users.php'> Seznam Uživatelů </a></li> ";
           echo "<li><a href='http://localhost/divadla_kina/admin_page/list_movie.php'> Seznam filmů </a></li>";
           echo "<li><a href='http://localhost/divadla_kina/admin_page/list_promitani.php'> Seznam Promítání </a></li>";
+          echo "<li><a href='http://localhost/divadla_kina/admin_page/list_saly.php'> Seznam Sálů </a></li>";
 
 echo "</ul>";
-/*?>
-<ul><?php echo "<li><a href='../Index.php'>Home</a></li>";
-          echo "<a href='user_edit.php'> User edit </a> ";
-
-    if (isset($_SESSION['email'])) {
-
-        if (($_SESSION['id_role'] == 2) || ($_SESSION['id_role'] == 1)) {
-            echo "<li><a href='../vypis_promitani.php'>Promítané filmy</a></li>";
-        }
-
-         if (($_SESSION['id_role'] == 2) || ($_SESSION['id_role'] == 1)) {
-            echo "<li><a href='sal1.php'>SÁL1</a></li>";
-        }
-        if (($_SESSION['id_role'] == 2) || ($_SESSION['id_role'] == 1)) {
-            echo "<li><a href='sal2.php'>SÁL2</a></li>";
-        }
-        if (($_SESSION['id_role'] == 1)) {
-        echo "<li><a href='balkonky.php'>Královské balkónky</a></li>";
-    }
-    if (($_SESSION['id_role'] == 2) || ($_SESSION['id_role']) == 1) {
-        echo "<li><a href='../kontakty.php'>Kontakt</a></li>";
-    }
-    if (($_SESSION['id_role'] == 1)) {
-        echo "<li><a href='index.php'>Admin Page</a></li>";
-    }
-} ?>
-</ul>
-
-
-
-<?php*/

@@ -40,14 +40,12 @@ if (isset($_SESSION['email'])) {
 ?></div><?php
 
 ?>
-<ul><?php echo "<li><a href='Index.php'>Home</a></li>"; ?>
-    <?php
+<ul><?php echo "<li><a href='Index.php'>Home</a></li>";
+          echo "<li><a href='vypis_promitani.php'>Promítané filmy</a></li>";
 
     if (isset($_SESSION['email'])) {
+      
 
-        if (($_SESSION['id_role'] == 2) || ($_SESSION['id_role'] == 1)) {
-            echo "<li><a href='vypis_promitani.php'>Promítané filmy</a></li>";
-        }
 
          /**if (($_SESSION['id_role'] == 2) || ($_SESSION['id_role'] == 1)) {
             echo "<li><a href='sal1.php'>SÁL1</a></li>";

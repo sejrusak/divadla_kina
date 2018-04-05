@@ -13,6 +13,7 @@ if (isset($_SESSION['email']) && ($_SESSION['id_role'] == 1)) {
         echo $row1['email'] . " ";
         echo $row1['password'] . " ";
         echo $row1['id_role'] . " ";
+        echo $row1['banned'] . " ";
         ?> <a href="user/<?php echo $row1['id_user']; ?>"> edit </a><?php
         echo "<br />";
     }
