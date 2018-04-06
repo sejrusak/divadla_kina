@@ -14,7 +14,7 @@ CREATE TABLE `filmy` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 INSERT INTO `filmy` (`id_filmu`, `nazev`, `vek_limit`) VALUES
-(1,	'Pir·ti z Karibika    ',	15),
+(1,	'Pir√°ti z Karibika    ',	15),
 (2,	'Next  ',	18),
 (3,	'Angry Birds',	6),
 (4,	'Legend',	15),
@@ -55,8 +55,8 @@ CREATE TABLE `promitani` (
 
 INSERT INTO `promitani` (`id_programu`, `id_filmu`, `id_salu`, `id_typ_promitani`, `jazyk`, `cena`, `cas_promitani`, `konec_predprodeje`, `hidden`) VALUES
 (1,	1,	1,	1,	'cesky',	350,	'2018-08-01 15:00:00',	'2018-08-01 14:55:00',	0),
-(2,	2,	1,	2,	'AngliËtina',	300,	'2018-08-01 14:55:01',	'2018-08-01 14:55:00',	0),
-(3,	4,	2,	1,	'AngliËtina (CZ titulky)',	250,	'2018-08-01 14:55:01',	'2018-08-01 14:55:00',	0);
+(2,	2,	1,	2,	'Angliƒçtina',	300,	'2018-08-01 14:55:01',	'2018-08-01 14:55:00',	0),
+(3,	4,	2,	1,	'Angliƒçtina (CZ titulky)',	250,	'2018-08-01 14:55:01',	'2018-08-01 14:55:00',	0);
 
 DROP TABLE IF EXISTS `saly`;
 CREATE TABLE `saly` (
@@ -69,7 +69,7 @@ CREATE TABLE `saly` (
 INSERT INTO `saly` (`id_salu`, `nazev`, `pocet_mist`) VALUES
 (1,	'Velky sal  ',	'200'),
 (2,	'Maly sal',	'100'),
-(3,	'St¯ednÌ S·l',	'150');
+(3,	'St≈ôedn√≠ S√°l',	'150');
 
 DROP TABLE IF EXISTS `sedacky`;
 CREATE TABLE `sedacky` (
@@ -805,7 +805,7 @@ CREATE TABLE `status_sedacky` (
 INSERT INTO `status_sedacky` (`id_status`, `nazev`) VALUES
 (1,	'Volna'),
 (2,	'zabrana'),
-(3,	'zamluven·');
+(3,	'zamluven√°');
 
 DROP TABLE IF EXISTS `typy_promitani`;
 CREATE TABLE `typy_promitani` (
@@ -833,7 +833,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 INSERT INTO `users` (`id_user`, `email`, `jmeno`, `prijmeni`, `password`, `id_role`, `banned`) VALUES
-(1,	'sejrus01@seznam.cz',	'Tom·ö',	'Malich',	'fe0edf9d112ac7fe2adae4db075022bd',	1,	0),
+(1,	'sejrus01@seznam.cz',	'Tom√°≈°',	'Malich',	'fe0edf9d112ac7fe2adae4db075022bd',	1,	0),
 (2,	'zadkus@ocelkuj.com',	'Zadkus ',	'Ocelkuj ',	'baac768e1a94b472737d5915834344f6',	2,	1);
 
 DROP TABLE IF EXISTS `zakaznici`;
@@ -848,9 +848,9 @@ CREATE TABLE `zakaznici` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
 
 INSERT INTO `zakaznici` (`id_zakaznika`, `jmeno`, `prijmeni`, `email`, `heslo`) VALUES
-(1,	'Tom·ö',	'Malich',	'sejrus01@seznam.cz',	'zadek123'),
-(2,	'Martin',	'Kokeö',	'martin.kokes@info.cz',	'zadek123'),
-(3,	'Jan',	'Jeûek',	'jezek.fbmail@gmail.com',	'zadek123'),
+(1,	'Tom√°≈°',	'Malich',	'sejrus01@seznam.cz',	'zadek123'),
+(2,	'Martin',	'Koke≈°',	'martin.kokes@info.cz',	'zadek123'),
+(3,	'Jan',	'Je≈æek',	'jezek.fbmail@gmail.com',	'zadek123'),
 (4,	'Jirka',	'Urban',	'Jirka.urban@gmail.com',	'zadek123');
 
--- 2018-04-06 06:15:32
+-- 2018-04-06 06:16:08
