@@ -4,10 +4,9 @@ $id_programu = filter_input(INPUT_GET, "id_programu");
 //$myConnection = new MySQLDb();
 //var_dump($myConnection);
 //echo $id_programu;
-//var_dump($result); 
+//var_dump($result);
 
-echo "Jste přihlášený jako " . $_SESSION['email'] . "<br/>";
-?> <a href="logOut.php" > <?php echo "Odhlásit uživatele " . $_SESSION['email']; ?></a><?php
+
 echo "<br>" . "<br />" . "<table border='1px' cellpadding='7' ><tr><th>Nazev Filmu</th><th>Cena</th><th>Konec předobjednávek</th><th>Konec promítání</th><th>Sál</th><th>Druh Promítání</th><th>Počet míst</th>";
 $promitani = Model::getPromitani($id_programu);
 foreach ($promitani as $row1) {
@@ -22,11 +21,11 @@ foreach ($promitani as $row1) {
 }
 echo "</table>";
 $querySeats = "
-    SELECT * 
+    SELECT *
     FROM `sedacky_promitani` sp
 JOIN `status_sedacky` s ON sp.id_status = s.id_status
 JOIN `sedacky` sed ON sp.id_sedacky = sed.id_sedacky
-WHERE id_promitani = $id_programu 
+WHERE id_promitani = $id_programu
 ORDER BY X_sedacky, Y_sedacky";
 $resultSeats = MYSqlDb::queryString($querySeats);
 $rada = 0;
@@ -44,7 +43,7 @@ $rada = 0;
                 $color = "orange";
                 break;
         }
-        
+
         if ($rada != $rowSeats['X_sedacky']) {
             ?><tr>
                 <td> <?php echo "Řada " . $rowSeats['X_sedacky'] . ": "; ?> </td><?php
@@ -65,7 +64,7 @@ $rada = 0;
             }
         }
     }
-    ?></table> <?php 
+    ?></table> <?php
 
 
 //var_dump($resultSeats);

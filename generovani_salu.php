@@ -1,24 +1,23 @@
 <?php
 include_once 'header.php';
-/*
- * 
- * vygenerování sedaček
+
+  //vygenerování sedaček
   for ($rows = 1; $rows <= 10; $rows++) {
   for ($columns = 1; $columns <= 20; $columns++) {
-  $sql = "INSERT INTO `sedacky` (`id_salu`, `multiplayer`, `X_sedacky`, `Y_sedacky`) VALUES(1, 1, $rows, $columns);";
+  $sql = "INSERT INTO `sedacky` (`id_salu`, `multiplayer`, `X_sedacky`, `Y_sedacky`) VALUES(2, 1, $rows, $columns);";
 
   echo $sql . "<br />";
   }
 
   }
- */
+
 
 //Vygenerování sedaček
- for ($seat = 1; $seat <= 200; $seat++) {
+ /*for ($seat = 1; $seat <= 200; $seat++) {
   $sql2 = "INSERT INTO `sedacky_promitani` (`id_sedacky`, `id_promitani`, `id_status`)
   VALUES ('$seat', '1', '1');";
   echo "<br />" . $sql2;
-  } 
+} */
 
 
 
@@ -44,11 +43,11 @@ include_once 'header.php';
 //Vypis obsazenosti salu
 
 /*$querySeats = "
-    SELECT * 
+    SELECT *
     FROM `sedacky_promitani` sp
 JOIN `status_sedacky` s ON sp.id_status = s.id_status
 JOIN `sedacky` sed ON sp.id_sedacky = sed.id_sedacky
-WHERE id_promitani = 2 
+WHERE id_promitani = 2
 ORDER BY X_sedacky, Y_sedacky";
 $resultSeats = MYSqlDb::queryString($querySeats);
 $rada = 0;
@@ -87,5 +86,5 @@ $rada = 0;
             }
         }
     }
-    ?></table> <?php 
+    ?></table> <?php
 */

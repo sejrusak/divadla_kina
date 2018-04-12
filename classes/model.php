@@ -8,11 +8,11 @@ class Model {
 
         $where = "";
         if (isset($id_programu)) {
-            $where = " AND WHERE id_programu = $id_programu";
+            $where = " AND id_programu = $id_programu";
         }
 
 
-        $query = "SELECT p.id_programu, f.nazev AS 'Nazev filmu', p. cena, p.cas_promitani AS 'Čas promítání', sa.nazev AS 'Sál', tp.nazev AS 'Druh promítání', sa.pocet_mist AS 'Počet míst', p.konec_predprodeje AS 'Konec předprodeje', p.hidden AS hidden
+        $query25 = "SELECT p.id_programu, f.nazev AS 'Nazev filmu', p. cena, p.cas_promitani AS 'Čas promítání', sa.nazev AS 'Sál', tp.nazev AS 'Druh promítání', sa.pocet_mist AS 'Počet míst', p.konec_predprodeje AS 'Konec předprodeje', p.hidden AS hidden
                   FROM promitani p
                   JOIN filmy f ON p.id_filmu = f.id_filmu
                   JOIN typy_promitani tp ON p.id_typ_promitani = tp.id_typ_promitani
@@ -20,10 +20,9 @@ class Model {
                   WHERE hidden = '0'
                   $where";
 
-
-        $result6 = MySqlDb::queryString($query);
+        $result25 = MySqlDb::queryString($query25);
         $promitani = array();
-        while ($row1 = mysqli_fetch_assoc($result6)) {
+        while ($row1 = mysqli_fetch_assoc($result25)) {
             $promitani[] = $row1;
         }
         return $promitani;
@@ -110,4 +109,30 @@ class Model {
           $resultUpdate = MySqlDb::queryString($query3);
       }
     }
+    //zjištění horní a dolní hranice id sedačky pro nové promítání
+    private static function prepareSeats($id_salu){
+    $query = "SELECT MIN(id_sedacky) AS dolni_hranice, MAX(id_sedacky) AS horni_hranice FROM `sedacky` WHERE `id_salu` = '$id_salu';";
+    $result = MySQLDB::queryString($query);
+    $row = mysqli_fetch_assoc($result);
+    return $row;
+    }
+
+    private static function addSeats($id_salu){
+          $row_hranice = Model::prepareSeats($id_salu);
+          $query2 = "SELECT MAX(id_promitani) AS id_max_promitani FROM `program`;";
+          $result2 = MySQLDB::queryString($query2);
+          $row2 = mysqli_fetch_assoc($result2);
+
+
+          for ($id_sedacky = $row_hranice["dolni_hranice"]; $id_sedacky <= $row_hranice["horni_hranice"]; $id_sedacky++){
+            echo "smrt!";
+            $query = "
+                INSERT INTO `sedacky_promitani` (`id_sedacky`, `id_promitani`, `id_status`)
+                VALUES('". $id_sedacky ."', '".$row2["id_max_promitani"]."', '1');
+                ";
+            echo $query;
+            MySQLDB::queryString($query);
+          }
+        }
+
 }

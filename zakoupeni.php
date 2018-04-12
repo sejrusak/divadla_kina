@@ -6,8 +6,8 @@ $id_promitani = filter_input(INPUT_GET, "id_promitani");
 //echo "<br />" . $id_sedacky;
 //echo $id_promitani;
 if (isset($_SESSION['email'])) {
-$query = "SELECT s.nazev AS nazev_salu, f.nazev AS film, p.jazyk AS Jazyk, p.cena AS cena, p.cas_promitani AS cas_promitani,  p.konec_predprodeje AS predprodej, 
-sp.id_status AS status, f.nazev AS nazev_filmu, f.vek_limit AS limit_veku, s.nazev AS druh_salu, s.pocet_mist AS pocet_mist, s.druh AS  druh_promitani, 
+$query = "SELECT s.nazev AS nazev_salu, f.nazev AS film, p.jazyk AS Jazyk, p.cena AS cena, p.cas_promitani AS cas_promitani,  p.konec_predprodeje AS predprodej,
+sp.id_status AS status, f.nazev AS nazev_filmu, f.vek_limit AS limit_veku, s.nazev AS druh_salu, s.pocet_mist AS pocet_mist,
 se.multiplayer AS zdrazeni, se.X_sedacky AS rada, se.Y_sedacky AS cislo_rady
 FROM `promitani` p
 JOIN sedacky_promitani sp ON p.id_programu = sp.id_promitani
@@ -29,8 +29,6 @@ while ($row1 = mysqli_fetch_assoc($result)) {
     echo "Nazev Filmu: " . $row1['nazev_filmu'] . "<br />";
     echo "Limit veku: " . $row1['limit_veku'] . "<br />";
     echo "Počet míst: " . $row1['pocet_mist'] . "<br />";
-    echo "Druh promítání: " . $row1['druh_promitani'] . "<br />";
-    echo "Zdražení: " . $row1['zdrazeni'] . "<br />";
     echo "Řada: " . $row1['rada'] . "<br />";
     echo "Číslo v řadě: " . $row1['cislo_rady'] . "<br />";
 }
@@ -38,5 +36,5 @@ while ($row1 = mysqli_fetch_assoc($result)) {
 <a href="rezervace.php?status=3&<?php echo "id_sedacky=" . $id_sedacky . "&id_promitani=" . $id_promitani; ?>">Rezervovat</a> <a href="rezervace.php?status=2&<?php echo "id_sedacky=" . $id_sedacky . "&id_promitani=" . $id_promitani; ?>">Koupit</a>
 <?php
 } else {
-echo "Musíte se přihlásit!";    
+echo "Musíte se přihlásit!";
 }

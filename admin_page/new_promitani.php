@@ -13,28 +13,27 @@ $submit = filter_input(INPUT_POST, "submit");
 
 
 if (isset($submit)) {
-  $queryInsert = "INSERT INTO `promitani` (`id_filmu`, `id_salu`, `id_typ_promitani`, `jazyk`, `cena`, `cas_promitani`, `konec_predprodeje`)
-  VALUES ('$id_filmu', '$id_salu', '$typ_promitani', '$jazyk', '$cena', '$cas', '$konec_predprodeje');";
-  $resultInsert = MySqlDb::queryString($queryInsert);
-  //var_dump($queryInsert);
+    $queryInsert = "INSERT INTO `promitani` (`id_filmu`, `id_salu`, `id_typ_promitani`, `jazyk`, `cena`, `cas_promitani`, `konec_predprodeje`)
+    VALUES ('$id_filmu', '$id_salu', '$typ_promitani', '$jazyk', '$cena', '$cas', '$konec_predprodeje');";
+    $resultInsert = MySqlDb::queryString($queryInsert);
+//var_dump($queryInsert);
   //$rowInsert = mysqli_fetch_assoc($resultInsert);
 
-  $query69 = "SELECT * FROM `promitani`";
-  $result69 = MySqlDb::queryString($query69);
-  while ($row69 = mysqli_fetch_assoc($result69)) {
-  $id_promitani = $row69['id_programu'];
-
-  }
+    $query69 = "SELECT * FROM `promitani` ORDER BY id_programu";
+    $result69 = MySqlDb::queryString($query69);
+    while ($row69 = mysqli_fetch_assoc($result69)) {
+      $id_promitani = $row69['id_programu'];
+    }
 //echo "id je" . $id_promitani;
 
-$query10 = "SELECT * FROM `saly` WHERE `id_salu` = '$id_salu'";
-$result10 = MySqlDb::queryString($query10);
-$row10 = mysqli_fetch_assoc($result10);
+    $query10 = "SELECT * FROM `saly` WHERE `id_salu` = '$id_salu'";
+    $result10 = MySqlDb::queryString($query10);
+    $row10 = mysqli_fetch_assoc($result10);
 
-  for ($seat = 1; $seat <= $row10['pocet_mist']; $seat++) {
-   $query129 = "INSERT INTO `sedacky_promitani` (`id_sedacky`, `id_promitani`, `id_status`)
-   VALUES ('$seat', '$id_promitani', '1');";
-   $result129 = MySqlDb::queryString($query129);
+   for ($seat = 1; $seat <= $row10['pocet_mist']; $seat++) {
+     $query129 = "INSERT INTO `sedacky_promitani` (`id_sedacky`, `id_promitani`, `id_status`)
+     VALUES ('$seat', '$id_promitani', '1');";
+     $result129 = MySqlDb::queryString($query129);
    //echo "<br />" . $query129;
    }
 
