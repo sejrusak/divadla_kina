@@ -24,19 +24,8 @@ if (isset($submit)) {
     while ($row69 = mysqli_fetch_assoc($result69)) {
       $id_promitani = $row69['id_programu'];
     }
-//echo "id je" . $id_promitani;
 
-    $query10 = "SELECT * FROM `saly` WHERE `id_salu` = '$id_salu'";
-    $result10 = MySqlDb::queryString($query10);
-    $row10 = mysqli_fetch_assoc($result10);
-
-   for ($seat = 1; $seat <= $row10['pocet_mist']; $seat++) {
-     $query129 = "INSERT INTO `sedacky_promitani` (`id_sedacky`, `id_promitani`, `id_status`)
-     VALUES ('$seat', '$id_promitani', '1');";
-     $result129 = MySqlDb::queryString($query129);
-   //echo "<br />" . $query129;
-   }
-
+Model::addSeats($id_salu);
 }
 
 

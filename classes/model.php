@@ -117,9 +117,9 @@ class Model {
     return $row;
     }
 
-    private static function addSeats($id_salu){
+    public static function addSeats($id_salu){
           $row_hranice = Model::prepareSeats($id_salu);
-          $query2 = "SELECT MAX(id_promitani) AS id_max_promitani FROM `program`;";
+          $query2 = "SELECT MAX(id_programu) AS id_max_promitani FROM `promitani`;";
           $result2 = MySQLDB::queryString($query2);
           $row2 = mysqli_fetch_assoc($result2);
 

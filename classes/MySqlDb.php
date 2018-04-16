@@ -11,10 +11,13 @@ class MySqlDb {
     private static $instance;
 
     private function __construct() {
-        
+
     }
 
     public static function queryString($queryString) {
+      //echo $queryString;
+      //echo "<br />";
+      //echo "<br />";
         $result = self::getInstance()->getConnection()->query($queryString);
         return $result;
     }
@@ -25,7 +28,7 @@ class MySqlDb {
         );
         $this->con->set_charset('utf8');
 
-        //echo "Connected to MYSQL"; 
+        //echo "Connected to MYSQL";
 
         if (!$this->con) {
             echo "Error: " . mysqli_connect_error();
